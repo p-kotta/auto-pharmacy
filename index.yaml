@@ -11,6 +11,10 @@ indexes:
 # your application using appcfg.py.
 
 - kind: WorkPhoto
+  properties:
+  - name: priority
+
+- kind: WorkPhoto
   ancestor: yes
   properties:
   - name: priority
