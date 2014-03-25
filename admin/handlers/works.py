@@ -1,44 +1,32 @@
 import webapp2
 from google.appengine.ext import ndb
 from models.work import *
-
-WORK_ADMIN_TEMPLATE = """\
-    <form action="" method="post">
-        <input name="key" type="hidden" value="%s"/>
-        <input name="name" value="%s"/>
-        <input name="title" value="%s"/>
-        <textarea name="description">%s</textarea>
-        <input name="priority" value="%s"/>
-        <input type="submit" value="Submit"/>
-        <input type="submit" name="delete" value="Delete!"/>
-    </form>
-"""
-
-WORK_PHOTO_ADMIN_TEMPLATE = """\
-    <form action="" method="post">
-        <input name="work" type="hidden" value="%s"/>
-        <input name="key" type="hidden" value="%s"/>
-        <input name="title" value="%s"/>
-        <input name="url" value="%s"/>
-        <input type="submit" value="Submit"/>
-        <input type="submit" name="delete" value="Delete!"/>
-    </form>
-"""
+from admin.templates import render
 
 class WorksAdminHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('<h1>Works</h1>')
-        # edit existing
+        works = []
         for work in Work.query().order(+Work.priority).fetch():
-            self.response.write('<h2>Work "%s"</h2>' % work.name)
-            self.response.write(WORK_ADMIN_TEMPLATE % (work.key.urlsafe(), work.name, work.title, work.description, work.priority))
-            self.response.write('<h3>Photos</h3>')
+            photos = []
+            works.append({
+                'key': work.key.urlsafe(),
+                'id': work.key.id(),
+                'name': work.name,
+                'title': work.title,
+                'description': work.description,
+                'priority': work.priority,
+                'photos': photos
+            })
             for photo in WorkPhoto.query(ancestor=ndb.Key(Work, work.key.id())).order(+WorkPhoto.priority).fetch():
-                self.response.write(WORK_PHOTO_ADMIN_TEMPLATE % (work.key.urlsafe(), photo.key.urlsafe(), photo.title, photo.url))
-            self.response.write(WORK_PHOTO_ADMIN_TEMPLATE % (work.key.urlsafe(), '', 'Title', 'URL'))
-
-        # add new
-        self.response.write(WORK_ADMIN_TEMPLATE % ('', 'name', 'Title', 'Description', '42'))
+                photos.append({
+                    'work': work.key.urlsafe(),
+                    'key': photo.key.urlsafe(),
+                    'id': photo.key.id(),
+                    'title': photo.title,
+                    'url': photo.url,
+                    'priority': photo.priority
+                })
+        self.response.write(render('works', { 'works': works }))
 
     def post(self):
         # delete work or photo
@@ -61,6 +49,7 @@ class WorksAdminHandler(webapp2.RequestHandler):
 
                 photo.title = self.request.get('title')
                 photo.url = self.request.get('url')
+                photo.priority = int(self.request.get('priority'))
                 photo.put()
 
             # post about work

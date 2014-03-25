@@ -1,0 +1,135 @@
+{% extends "page.html" %}
+
+{% block title %}Works{% endblock %}
+
+{% block content %}
+    <h1>Works</h1>
+
+    {% for work in works %}
+        <h2>Work "{{ work.name }}"</h2>
+
+        <form class="form-horizontal" role="form" action="" method="post">
+            <input name="key" type="hidden" value="{{ work.key }}"/>
+
+            <div class="form-group">
+                <label for="name-{{ work.id }}" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="name-{{ work.id }}" name="name" placeholder="name" value="{{ work.name }}" />
+                </div>
+
+                <label for="title-{{ work.id }}" class="col-sm-1 control-label">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="title-{{ work.id }}" name="title" placeholder="Work Title" value="{{ work.title }}" />
+                </div>
+
+                <label for="priority-{{ work.id }}" class="col-sm-1 control-label">Priority</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" id="priority-{{ work.id }}" name="priority" placeholder="42" value="{{ work.priority }}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description-{{ work.id }}" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="description-{{ work.id }}" name="description" rows="3">{{ work.description }}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Save</button>
+                    <button type="submit" name="delete" class="btn btn-danger">Delete!</button>
+                </div>
+            </div>
+        </form>
+
+        <h3>Photos</h3>
+        {% for photo in work.photos %}
+            <form class="form-horizontal" role="form" action="" method="post">
+                <input name="work" type="hidden" value="{{ work.key }}"/>
+                <input name="key" type="hidden" value="{{ photo.key }}"/>
+
+                <div class="form-group">
+                    <label for="title-{{ photo.id }}" class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="title-{{ photo.id }}" name="title" placeholder="Photo Title" value="{{ photo.title }}" />
+                    </div>
+
+                    <label for="url-{{ photo.id }}" class="col-sm-1 control-label">URL</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="url-{{ photo.id }}" name="url" placeholder="URL" value="{{ photo.url }}" />
+                    </div>
+
+                    <label for="priority-{{ photo.id }}" class="col-sm-1 control-label">Priority</label>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" id="priority-{{ photo.id }}" name="priority" placeholder="42" value="{{ photo.priority }}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Save</button>
+                        <button type="submit" name="delete" class="btn btn-danger">Delete!</button>
+                    </div>
+                </div>
+            </form>
+        {% endfor %}
+        <form class="form-horizontal" role="form" action="" method="post">
+            <div class="form-group">
+                <label for="title-new" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="title-new" name="title" placeholder="Photo Title" />
+                </div>
+
+                <label for="url-new" class="col-sm-1 control-label">URL</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="url-new" name="url" placeholder="URL" />
+                </div>
+
+                <label for="priority-new" class="col-sm-1 control-label">Priority</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" id="priority-new" name="priority" placeholder="42" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+
+    <h2>Add new work</h2>
+    <form class="form-horizontal" role="form" action="" method="post">
+        <div class="form-group">
+            <label for="name-new" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="name-new" name="name" placeholder="name" />
+            </div>
+
+            <label for="title-new" class="col-sm-1 control-label">Title</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="title-new" name="title" placeholder="Work Title" />
+            </div>
+
+            <label for="priority-new" class="col-sm-1 control-label">Priority</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" id="priority-new" name="priority" placeholder="42" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description-new" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="description-new" name="description" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Create</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
