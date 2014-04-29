@@ -1,0 +1,11 @@
+/* ADMIN exclusive */
+.exclusive {
+    margin: 1em 0;
+}
+
+.exclusive-text {
+    display: block;
+    width: 90%;
+    height: 500px;
+    margin: 1em 0;
+}

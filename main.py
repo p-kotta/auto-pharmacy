@@ -5,7 +5,9 @@ from google.appengine.api import users
 from handlers.works import *
 from handlers.prices import *
 from handlers.contacts import *
+from handlers.exclusive import *
 from admin.handlers.works import *
+from admin.handlers.exclusive import *
 
 
 class IndexHandler(webapp2.RequestHandler):
@@ -24,7 +26,9 @@ app = webapp2.WSGIApplication([
     ('/works/', WorksHandler),
     ('/prices/', PricesHandler),
     ('/contacts/', ContactsHandler),
+    ('/exclusive/', ExclusiveHandler),
 
     ('/admin/', AdminHandler),
-    ('/admin/works/', WorksAdminHandler)
+    ('/admin/works/', WorksAdminHandler),
+    ('/admin/exclusive/', ExclusiveAdminHandler)
 ], debug=True)
