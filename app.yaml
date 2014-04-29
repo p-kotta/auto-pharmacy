@@ -9,13 +9,14 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /all\.css
-  static_files: all.css
-  upload: all\.css
+- url: /css
+  static_dir: css
 
-- url: /all\.js
-  static_files: all.js
-  upload: all\.js
+- url: /js
+  static_dir: js
+
+- url: /images
+  static_dir: images
 
 - url: /admin\/.*
   script: main.app

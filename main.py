@@ -3,6 +3,8 @@
 import webapp2
 from google.appengine.api import users
 from handlers.works import *
+from handlers.price import *
+from handlers.contacts import *
 from admin.handlers.works import *
 
 
@@ -20,6 +22,8 @@ class AdminHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', IndexHandler),
     ('/works/', WorksHandler),
+    ('/price/', PriceHandler),
+    ('/contacts/', ContactsHandler),
 
     ('/admin/', AdminHandler),
     ('/admin/works/', WorksAdminHandler)
