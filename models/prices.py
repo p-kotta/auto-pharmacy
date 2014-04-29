@@ -1,9 +1,9 @@
 from google.appengine.ext import ndb
 
-class Price(ndb.Model):
+class Prices(ndb.Model):
     name = ndb.StringProperty()
 
-class PriceRow(ndb.Model):
+class PricesRow(ndb.Model):
     parentId = ndb.IntegerProperty()
     name = ndb.StringProperty()
     cost = ndb.IntegerProperty()
