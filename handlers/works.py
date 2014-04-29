@@ -11,9 +11,8 @@ class WorksHandler(webapp2.RequestHandler):
 
         self.response.write(render('header', { 'current': 'works' }))
 
-        for work in Work.query().order(+Work.priority).fetch():
-            self.response.write(render('work', { 'work': work }))
-            for photo in WorkPhoto.query(ancestor=ndb.Key(Work, work.key.id())).order(+WorkPhoto.priority).fetch():
-                self.response.write(render('work-photo', { 'photo': photo }))
+        self.response.write(render(
+            'works',
+            { 'works': Work.get_root()['children'] }))
 
         self.response.write(render('footer', {}))

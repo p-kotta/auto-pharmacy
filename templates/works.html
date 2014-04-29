@@ -1,0 +1,23 @@
+{% macro render_work(work, indent=1) %}
+    {% if work.children %}
+        {% set tag = 'h' ~ indent %}
+    {% else %}
+        {% set tag = 'li' %}
+    {% endif %}
+
+    <{{ tag }}>
+        {{- work.title -}}
+    </{{ tag }}>
+
+    {% if work.children %}
+        <ul>
+            {% for child in work.children %}
+                {{ render_work(child, indent=indent+1) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% for work in works %}
+    {{ render_work(work) }}
+{% endfor %}

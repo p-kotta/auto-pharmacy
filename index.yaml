@@ -10,6 +10,27 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: Work
+  properties:
+  - name: title
+  - name: last_modified
+
+- kind: Work
+  properties:
+  - name: title
+  - name: last_modified
+    direction: desc
+
+- kind: Work
+  properties:
+  - name: title
+  - name: priority
+
+- kind: Work
+  ancestor: yes
+  properties:
+  - name: priority
+
 - kind: WorkPhoto
   properties:
   - name: priority
