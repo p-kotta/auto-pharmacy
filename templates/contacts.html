@@ -1,3 +1,8 @@
+{% extends "page.html" %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
 <section id="contacts" class="section">
     <div class="section-content">
         <aside class="col g-5 section-content_col">
@@ -6,8 +11,9 @@
                 Ангарск, Фестивальная улица, 43 <br />
                 "Автоаптека"
             </p>
-            <p>
+            <p class="text">
                 Тел: +7 (902) 579 301 <br />
+                <span class="phone">Тел: </span>682 301 <br /><br />
                 Email: <a href="mailto:avtoapteka@inbox.ru">avtoapteka@inbox.ru</a>
             </p>
         </aside>
@@ -17,3 +23,5 @@
         </div>
     </div>
 </section>
+
+{% endblock %}

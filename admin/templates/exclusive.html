@@ -3,10 +3,12 @@
 {% block title %}Exclusive{% endblock %}
 
 {% block content %}
-<h3>Описание технической информации</h3>
+<h3>Описание работ</h3>
 
 <form class="exclusive" method="post" action="">
-    <textarea name="text" class="exclusive-text"></textarea>
+    <textarea name="text" class="exclusive-text">
+        {{ exclusive.text }}
+    </textarea>
     <input type="submit" value="Сохранить" class="btn btn-success"/>
 </form>
 

@@ -6,7 +6,13 @@ from admin.templates import render
 class ExclusiveAdminHandler(webapp2.RequestHandler):
     def get(self):
 
-        self.response.write(render('exclusive', {'exclusive': Exclusive.query()}))
+        exclusive = Exclusive.query().fetch()
+        if len(exclusive):
+            exclusive = exclusive[0]
+        else:
+            exclusive = {'text': ''}
+
+        self.response.write(render('exclusive', {'exclusive': exclusive}))
 
     def post(self):
 
