@@ -5,9 +5,9 @@ from admin.templates import render
 import re
 
 work_line_re = re.compile(
-    r"""^(?P<indent>\s*?)
-    (?P<title>\S.*?)\s+
-    (?P<price>\S+)\s*
+    r"""^(?P<indent>\s*)
+    (?P<title>\S.*?)
+    (\s+(?P<price>\d*))?\s*
     $""", re.VERBOSE)
 
 class WorksAdminHandler(webapp2.RequestHandler):
