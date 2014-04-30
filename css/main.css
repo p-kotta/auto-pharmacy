@@ -869,7 +869,7 @@ header .logo a {
     font-family: 'Underdog', cursive;
 
     position: absolute;
-    /*left: 12px;*/
+    left: 18px;
     top: 16px;
 }
 
@@ -2392,7 +2392,7 @@ footer .social-links li:first-child { margin-left: 0; }
 #services h3 { font-size: 18px; }
 #services .section-head p.desc { color: #999999; }
 #services .section-head .intro { color: #000; }
-#services .section-content { padding-top: 0; }
+#services .section-content { padding-top: 0; padding-right: 36px; }
 
 /* Portfolio Content */
 #services-wrapper { margin-top: 36px; }
