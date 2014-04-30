@@ -2385,8 +2385,9 @@ footer .social-links li:first-child { margin-left: 0; }
     /*padding-top: 54px;*/
     padding-bottom: 120px;
 }
-#services .section-head h2 { color: #11ABB0; }
-#services .section-head h3 { color: #000; }
+#services h1 { font-size: 24px; }
+#services h2 { font-size: 20px; }
+#services h3 { font-size: 18px; }
 #services .section-head p.desc { color: #999999; }
 #services .section-head .intro { color: #000; }
 #services .section-content { padding-top: 0; }

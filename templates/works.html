@@ -1,3 +1,17 @@
+{% extends "page.html" %}
+
+{% block title %}Виды работ{% endblock %}
+
+{% block content %}
+<section class="section" id="services">
+    <div class="section-content">
+        {% for work in works %}
+            {{ render_work(work) }}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
 {% macro render_work(work, indent=1) %}
     {% if work.children %}
         {% set tag = 'h' ~ indent %}
@@ -7,6 +21,10 @@
 
     <{{ tag }}>
         {{- work.title -}}
+        {% if work.price -%}
+            : {{ work.price }} руб.
+        {%- endif %}
+
     </{{ tag }}>
 
     {% if work.children %}
@@ -18,6 +36,4 @@
     {% endif %}
 {% endmacro %}
 
-{% for work in works %}
-    {{ render_work(work) }}
-{% endfor %}
+
